@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  nginx:
+    image: nginx
+    ports:
+    - 8080:80
+    volumes:
+      - ./:/etc/nginx/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+
+  sync-gateway:
+    image: couchbase/sync-gateway
+    command: /tmp/sync-gateway.conf
+    volumes:
+      - ./sync-gateway.conf:/tmp/sync-gateway.conf
